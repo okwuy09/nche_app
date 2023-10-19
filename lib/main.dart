@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nche/services/controller/places_controller.dart';
+import 'package:nche/services/controller/wallet_controller.dart';
 import 'package:nche/widget/colors.dart';
 import 'package:provider/provider.dart';
 import 'services/controller/agency_controller.dart';
@@ -11,13 +12,12 @@ void main() {
     ChangeNotifierProvider(create: (_) => PlacesController()),
     ChangeNotifierProvider(create: (_) => AgencyController()),
     ChangeNotifierProvider(create: (_) => AppStateController()),
+    ChangeNotifierProvider(create: (_) => WalletController()),
   ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -30,7 +30,7 @@ class TransactionWidget extends StatelessWidget {
               assetImageUrl,
               width: 21,
               height: 21,
-              color: AppColor.purple,
+              color: AppColor.primaryColor,
             ),
             const SizedBox(
               width: 5,
@@ -38,7 +38,7 @@ class TransactionWidget extends StatelessWidget {
             Text(
               title,
               style: style.copyWith(
-                color: AppColor.purple,
+                color: AppColor.primaryColor,
                 fontSize: 13,
                 fontWeight: FontWeight.w800,
               ),

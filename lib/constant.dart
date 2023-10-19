@@ -3,6 +3,7 @@
 import 'dart:ui' as ui;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:nche/model/payment.dart';
 import 'package:nche/model/transaction.dart';
 import 'package:nche/model/wallet.dart';
 import 'package:nche/widget/colors.dart';
@@ -104,6 +105,22 @@ List<Wallet> wallet = [
     amount: '10,400',
     id: '1',
     locked: true,
+  ),
+];
+
+/// List Of Payment Method
+List<PaymentMethod> paymentMethod = [
+  PaymentMethod(
+    assetsImage: 'assets/bank.png',
+    title: 'Bank Transfer',
+    subTitle: 'Usually arrives within 24 hours',
+    type: 'transfer',
+  ),
+  PaymentMethod(
+    assetsImage: 'assets/card.png',
+    title: 'Credit/Debit Card',
+    subTitle: 'Usually arrives under 5 mins',
+    type: 'card',
   ),
 ];
 

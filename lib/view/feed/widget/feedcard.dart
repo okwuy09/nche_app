@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nche/constant.dart';
+import 'package:nche/view/feed/photo_view.dart';
 import 'package:nche/view/feed/post_comment.dart';
 import 'package:nche/view/feed/post_detail.dart';
 import 'package:nche/view/feed/reward/claim_reward.dart';
@@ -15,7 +16,7 @@ class FeedCard extends StatelessWidget {
   //final List post;
   final bool isNewsDetail;
   final BuildContext context;
-  const FeedCard({
+  FeedCard({
     Key? key,
     required this.context,
     required this.index,
@@ -25,6 +26,13 @@ class FeedCard extends StatelessWidget {
   final String text =
       'Please we are stranded at tall mellan bridge. We just had an accident. Please we are stranded at tall mellan bridge. We just had an accident. We just had an accident. Please we are stranded at tall mellan bridge, We just had an accident.';
   final String location = '042, Coal city state. Obodo';
+  final List<String> imageURL = [
+    'https://www.northern-times.co.uk/_media/img/92HKPTP5V2GMDAJ2QMN6.jpg',
+    'https://scd.infomigrants.net/media/resize/my_image_medium/f90f6fb734c326a6e97e9485bfa689dc07fd091d.jpg',
+    'https://cdn.telanganatoday.com/wp-content/uploads/2023/04/Telangana-Father-son-die-in-road-accident-in-Nalgonda.jpg',
+    'https://media.premiumtimesng.com/wp-content/files/2023/04/Scene-of-the-fatal-road-accident-in-Cross-River-State.jpeg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -161,36 +169,40 @@ class FeedCard extends StatelessWidget {
           const SizedBox(height: 4),
           index == 2
               ? Container()
-              : InkWell(
-                  onTap: () => {},
-                  child: Container(
-                    width: size.width,
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 10,
-                    ),
-                    child:
-                        //  post[index].avarter!.length <= 1
-                        //     ?
-                        //     Container(
-                        //   decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(4),
-                        //     image: DecorationImage(
-                        //       image: NetworkImage(post[index].avarter![0]),
-                        //       fit: BoxFit.cover,
-                        //     ),
-                        //   ),
-                        // )
-                        PhotoGrid(
-                      imageUrls: const [
-                        'https://www.northern-times.co.uk/_media/img/92HKPTP5V2GMDAJ2QMN6.jpg',
-                        'https://scd.infomigrants.net/media/resize/my_image_medium/f90f6fb734c326a6e97e9485bfa689dc07fd091d.jpg',
-                        'https://cdn.telanganatoday.com/wp-content/uploads/2023/04/Telangana-Father-son-die-in-road-accident-in-Nalgonda.jpg',
-                        'https://media.premiumtimesng.com/wp-content/files/2023/04/Scene-of-the-fatal-road-accident-in-Cross-River-State.jpeg',
-                      ],
-                      onImageClicked: (i) {},
-                      onExpandClicked: () {},
-                    ),
+              : Container(
+                  width: size.width,
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 10,
                   ),
+                  child: imageURL.length == 1
+                      ? Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            image: DecorationImage(
+                              image: NetworkImage(imageURL[0]),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        )
+                      : PhotoGrid(
+                          imageUrls: imageURL,
+                          onImageClicked: (i) => Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (_) => PhotoView(
+                                imageURL: imageURL,
+                              ),
+                            ),
+                          ),
+                          onExpandClicked: () => Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (_) => PhotoView(
+                                imageURL: imageURL,
+                              ),
+                            ),
+                          ),
+                        ),
                 ),
 
           /// Reword post
@@ -332,10 +344,9 @@ class FeedCard extends StatelessWidget {
                 '24.2k',
                 style: style.copyWith(fontSize: 10),
               ),
-
               // share post
             ],
-          )
+          ),
         ],
       ),
     );
